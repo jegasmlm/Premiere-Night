@@ -1,6 +1,52 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Premiere Night
 
-# Getting Started
+Create a cross-platform “Premiere Night” app that helps curators surface the right films
+for Mytheresa’s private screening events. The experience should focus on cinematic
+discovery and a simple watchlist.
+
+# Architecture
+
+### Tech Stack
+
+- **React Native (TypeScript)**: Cross‑platform mobile UI
+- **React Navigation (Native Stack)**: Screen routing and navigation
+- **React Hooks & Context**: Local and app‑level state management
+- **Fetch API**: Networking
+- **StyleSheet**: Styling primitives
+
+### Project Structure
+
+```text
+src/
+  components/
+    elements/         # Reusable UI building blocks (e.g., Card, FilmCard, FilmCards, Input, Layout)
+    views/            # Screen components (e.g., Home, Film)
+    navigators/       # Navigation stack configuration
+  hooks/              # Data-fetching and utility hooks (e.g., useMovies, useApiRequest)
+  logic/              # API layer: fetches and transforms server responses
+  data/               # Domain models (e.g., Movie, Movies, Genres)
+  resources/          # Constants/config (e.g., BASE_URL, API_KEY)
+  contexts/           # App-wide context providers
+  types/              # TypeScript ambient/type declarations
+```
+
+### How API Calls Work
+
+- **Hooks trigger requests**: Screens call hooks like `usePopularMovies`, `useNowPlayingMovies`, which delegate to a generic `useApiRequest` hook.
+- **Request orchestration**: `useApiRequest` manages `loading` and `data` state, and shows platform-appropriate errors (Toast/Alert). Dependencies control when requests re-run.
+- **API layer**: Functions in `src/logic` (e.g., `getPopularMovies`, `getMovieDetails`, `getGenres`) build URLs from `BASE_URL` and send requests with `Authorization: Bearer ${API_KEY}` headers.
+- **Model mapping**: Raw responses are mapped into domain models (`Movies`, `Movie`, `Genres`) before being returned to the UI.
+- **Consumption**: Components render lists/cards based on hook outputs and loading states.
+
+Note: The API key and base URL are defined in `src/resources/constants.ts`.
+
+# Limitations
+ 
+ - Environment variables are not used for the API token or base URL; both live in `src/resources/constants.ts`.
+ - Some text styles are component-specific and not centralized/reused.
+
+
+# Run the app
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
