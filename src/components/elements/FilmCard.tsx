@@ -1,6 +1,6 @@
 import { ImageBackground, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
 import { Movie } from "../../data/Movie";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigators/AppNavigator";

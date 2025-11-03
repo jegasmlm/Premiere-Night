@@ -1,5 +1,4 @@
 import { GenreSchema } from "./Genre";
-import { Genres } from "./Genres";
 
 export interface MovieSchema {
   id: string;

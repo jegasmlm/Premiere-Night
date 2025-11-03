@@ -1,11 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import HomeScreen from "../views/Home/HomeScreen";
 import FilmScreen from "../views/Film/FilmScreen";
 import WatchlistScreen from "../views/Watchlist/WatchlistScreen";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "../elements/Icon";
 import { useAppContext } from "../../contexts/AppContext";
+import { useCallback } from "react";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -18,6 +19,19 @@ export default function AppNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
 
   const { watchlist } = useAppContext();
+  
+  const headerRight = useCallback((navigation: NativeStackNavigationProp<RootStackParamList, "Home">) => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Watchlist')}
+        style={styles.headerRight}
+        accessibilityLabel="Open watchlist"
+      >
+        <Icon name="starFill" width={22} height={22} fill="#f5c518" />
+        <Text style={styles.headerRightText}>Watching ({watchlist.count()})</Text>
+      </TouchableOpacity>
+    );
+  }, [watchlist]);
 
   return (
     <View style={styles.container}>
@@ -35,18 +49,7 @@ export default function AppNavigator() {
             component={HomeScreen}
             options={({ navigation }) => ({ 
               headerTitle: 'Premiere Night',
-              headerRight: () => (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Watchlist')}
-                  style={styles.headerRight}
-                  accessibilityLabel="Open watchlist"
-                >
-                  <Icon name="starFill" width={22} height={22} fill="#f5c518" />
-                  <Text style={styles.headerRightText}>
-                    Watching ({watchlist.count()})
-                  </Text>
-                </TouchableOpacity>
-              ),
+              headerRight: () => headerRight(navigation),
             })}
           />
           <Stack.Screen

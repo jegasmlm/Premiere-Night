@@ -1,13 +1,12 @@
-import { Alert, ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useMovieDetails } from "../../../hooks/useMovieDetails";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigators/AppNavigator";
 import Loading from "../../elements/Loading";
 import { useAppContext } from "../../../contexts/AppContext";
 import Icon from "../../elements/Icon";
 import Layout from "../../elements/Layout";
 import Badge from "../../elements/Badge";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Text from "../../elements/Text";
 import { useCallback, useMemo } from "react";
 
@@ -31,7 +30,7 @@ export default function FilmScreen() {
     } else {
       addToWatchlist(movie);
     }
-  }, [addToWatchlist, isInWatchlist, movie]);
+  }, [addToWatchlist, removeFromWatchlist, isInWatchlist, movie]);
 
   if (loading) {
     return <Loading />;
