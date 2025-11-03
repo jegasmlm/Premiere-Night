@@ -48,7 +48,7 @@ Note: The API key and base URL are defined in `src/resources/constants.ts`.
 
 # Test App
 
-Open the hosted demo on Appetize: [PremiereNight on Appetize](https://appetize.io/app/b_jfqu23trlurylol54nsnng5rne).
+Open the hosted demo on Appetize: [PremiereNight on Appetize](https://appetize.io/app/b_y33dr3xzdy44uwvlqsvuac47wq).
 
 # Run the app
 
