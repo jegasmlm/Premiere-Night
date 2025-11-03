@@ -3,7 +3,7 @@ import { Movies } from "../data/Movies";
 import { API_KEY, BASE_URL } from "../resources/constants";
 
 export async function getPopularMovies() {
-  const response = await fetch(`${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`, {
+  const response = await fetch(`${BASE_URL}/movie/popular`, {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'accept': 'application/json'
@@ -16,7 +16,7 @@ export async function getPopularMovies() {
 }
 
 export async function getNowPlayingMovies() {
-  const response = await fetch(`${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`, {
+  const response = await fetch(`${BASE_URL}/movie/now_playing`, {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'accept': 'application/json'
@@ -29,7 +29,7 @@ export async function getNowPlayingMovies() {
 }
 
 export async function getUpcomingMovies() {
-  const response = await fetch(`${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}`, {
+  const response = await fetch(`${BASE_URL}/movie/upcoming`, {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'accept': 'application/json'
@@ -40,7 +40,7 @@ export async function getUpcomingMovies() {
 }
 
 export async function getTopRatedMovies() {
-  const response = await fetch(`${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200`, {
+  const response = await fetch(`${BASE_URL}/movie/top_rated`, {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'accept': 'application/json'
